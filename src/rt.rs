@@ -22,7 +22,7 @@ pub fn parse_args(argc: *mut c_int, argv: *mut *mut *mut c_char) {
 
 pub fn get_display_arg_name() -> Option<String> {
     unsafe {
-        FromGlibPtr::borrow(
+        FromGlibPtr::borrow_from_glib(
             ffi::gdk_get_display_arg_name())
     }
 }
@@ -33,27 +33,27 @@ pub fn notify_startup_complete() {
 
 pub fn notify_startup_complete_with_id(startup_id: &str) {
     unsafe {
-        ffi::gdk_notify_startup_complete_with_id(startup_id.borrow_to_glib().0);
+        ffi::gdk_notify_startup_complete_with_id(startup_id.lend_to_glib().0);
     }
 }
 
 #[cfg(feature = "gdk_3_10")]
 pub fn set_allowed_backends(backends: &str) {
     unsafe {
-        ffi::gdk_set_allowed_backends(backends.borrow_to_glib().0)
+        ffi::gdk_set_allowed_backends(backends.lend_to_glib().0)
     }
 }
 
 pub fn get_program_class() -> Option<String> {
     unsafe {
-        FromGlibPtr::borrow(
+        FromGlibPtr::borrow_from_glib(
             ffi::gdk_get_program_class())
     }
 }
 
 pub fn set_program_class(program_class: &str) {
     unsafe {
-        ffi::gdk_set_program_class(program_class.borrow_to_glib().0)
+        ffi::gdk_set_program_class(program_class.lend_to_glib().0)
     }
 }
 

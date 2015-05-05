@@ -27,14 +27,14 @@ impl PixbufFormat {
 
     pub fn get_name(&self) -> Option<String> {
         unsafe {
-            FromGlibPtr::borrow(
+            FromGlibPtr::borrow_from_glib(
                 ffi::gdk_pixbuf_format_get_name(self.pointer))
         }
     }
 
     pub fn get_description(&self) -> Option<String> {
         unsafe {
-            FromGlibPtr::borrow(
+            FromGlibPtr::borrow_from_glib(
                 ffi::gdk_pixbuf_format_get_description(self.pointer))
         }
     }
@@ -53,7 +53,7 @@ impl PixbufFormat {
             if length == 0 {
                 Vec::new()
             } else {
-                FromGlibPtrContainer::borrow_num(ptr, length as usize)
+                FromGlibPtrContainer::borrow_num_from_glib(ptr, length as usize)
             }
         }
     }
@@ -72,7 +72,7 @@ impl PixbufFormat {
             if length == 0 {
                 Vec::new()
             } else {
-                FromGlibPtrContainer::borrow_num(ptr, length as usize)
+                FromGlibPtrContainer::borrow_num_from_glib(ptr, length as usize)
             }
         }
     }
@@ -95,7 +95,7 @@ impl PixbufFormat {
 
     pub fn get_license(&self) -> Option<String> {
         unsafe {
-            FromGlibPtr::borrow(
+            FromGlibPtr::borrow_from_glib(
                 ffi::gdk_pixbuf_format_get_license(self.pointer))
         }
     }

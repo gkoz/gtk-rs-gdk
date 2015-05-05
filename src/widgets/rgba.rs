@@ -78,7 +78,7 @@ impl RGBA for C_GdkRGBA {
 
     fn parse(&mut self, spec: &str) -> bool {
         unsafe {
-            ::glib::to_bool(ffi::gdk_rgba_parse(self, spec.borrow_to_glib().0))
+            ::glib::to_bool(ffi::gdk_rgba_parse(self, spec.lend_to_glib().0))
         }
     }
 
@@ -92,7 +92,7 @@ impl RGBA for C_GdkRGBA {
 
     fn to_string(&self) -> Option<String> {
         unsafe {
-            FromGlibPtr::take(
+            FromGlibPtr::take_from_glib(
                 ffi::gdk_rgba_to_string(self))
         }
     }

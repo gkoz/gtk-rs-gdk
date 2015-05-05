@@ -17,7 +17,7 @@ pub struct Device {
 impl Device {
     pub fn get_name(&self) -> Option<String> {
         unsafe {
-            FromGlibPtr::borrow(
+            FromGlibPtr::borrow_from_glib(
                 ffi::gdk_device_get_name(self.pointer))
         }
     }

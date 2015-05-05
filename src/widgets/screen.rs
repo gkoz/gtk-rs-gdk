@@ -92,7 +92,7 @@ impl Screen {
 
     pub fn make_display_name(&self) -> Option<String> {
         unsafe {
-            FromGlibPtr::take(
+            FromGlibPtr::take_from_glib(
                 ffi::gdk_screen_make_display_name(self.pointer))
         }
     }
@@ -131,7 +131,7 @@ impl Screen {
 
     pub fn get_monitor_plug_name(&self, monitor_num: i32) -> Option<String> {
         unsafe {
-            FromGlibPtr::take(
+            FromGlibPtr::take_from_glib(
                 ffi::gdk_screen_get_monitor_plug_name(self.pointer,
                                                       monitor_num as c_int))
         }

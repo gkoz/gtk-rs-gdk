@@ -10,7 +10,7 @@ use libc::c_uint;
 
 pub fn keyval_name(keyval: u32) -> Option<String> {
     unsafe {
-        FromGlibPtr::borrow(
+        FromGlibPtr::borrow_from_glib(
             ffi::gdk_keyval_name(keyval as c_uint))
     }
 }

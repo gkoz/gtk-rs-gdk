@@ -81,9 +81,9 @@ impl Pixbuf {
 
     pub fn get_option(&self, key: &str) -> Option<String> {
         unsafe {
-            FromGlibPtr::borrow(
+            FromGlibPtr::borrow_from_glib(
                 ffi::gdk_pixbuf_get_option(self.pointer as *const ffi::C_GdkPixbuf,
-                                           key.borrow_to_glib().0))
+                                           key.lend_to_glib().0))
         }
     }
 

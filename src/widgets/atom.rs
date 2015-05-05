@@ -18,7 +18,7 @@ impl Atom {
 
     pub fn intern(atom_name: &str, only_if_exists: bool) -> Option<Atom> {
         let tmp = unsafe {
-            ffi::gdk_atom_intern(atom_name.borrow_to_glib().0, ::glib::to_gboolean(only_if_exists))
+            ffi::gdk_atom_intern(atom_name.lend_to_glib().0, ::glib::to_gboolean(only_if_exists))
         };
 
         if tmp.is_null() {
@@ -32,7 +32,7 @@ impl Atom {
 
     pub fn intern_static_string(atom_name: &str) -> Option<Atom> {
         let tmp = unsafe {
-            ffi::gdk_atom_intern_static_string(atom_name.borrow_to_glib().0)
+            ffi::gdk_atom_intern_static_string(atom_name.lend_to_glib().0)
         };
 
         if tmp.is_null() {
@@ -46,7 +46,7 @@ impl Atom {
 
     pub fn name(&self) -> Option<String> {
         unsafe {
-            FromGlibPtr::take(
+            FromGlibPtr::take_from_glib(
                 ffi::gdk_atom_name(self.pointer))
         }
     }
