@@ -5,7 +5,7 @@
 /// The GdkPixbuf structure contains information that describes an image in memory.
 
 use glib::to_gboolean;
-use glib::translate::{FromGlibPtr, ToGlibPtr};
+use glib::translate::*;
 use ffi;
 use c_vec::CVec;
 
@@ -81,9 +81,9 @@ impl Pixbuf {
 
     pub fn get_option(&self, key: &str) -> Option<String> {
         unsafe {
-            FromGlibPtr::borrow_from_glib(
+            from_glib_none(
                 ffi::gdk_pixbuf_get_option(self.pointer as *const ffi::C_GdkPixbuf,
-                                           key.lend_to_glib().0))
+                                           key.to_glib_none().0))
         }
     }
 
